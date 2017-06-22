@@ -211,6 +211,8 @@ nnoremap <leader>S :mksession<CR>
 " }}}
 " Vim silversearch{{{
  let g:ackprg = 'ag --nogroup --nocolor --column'
+ let g:ags_winheight = '20'
+
 
 " }}}
 " Vim Plug {{{
