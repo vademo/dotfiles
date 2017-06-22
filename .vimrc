@@ -209,6 +209,10 @@ nnoremap <leader>S :mksession<CR>
     let test#strategy = "dispatch"
     " }}}
 " }}}
+" Vim silversearch{{{
+ let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" }}}
 " Vim Plug {{{
 call plug#begin('~/.vim/bundle')
 Plug 'takac/vim-hardtime'
