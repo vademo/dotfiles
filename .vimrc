@@ -164,6 +164,7 @@ nnoremap <leader>S :mksession<CR>
     " NERDTree {{{
     map <leader>n :NERDTree<CR>
     map <C-n> :NERDTreeToggle<CR>
+    let g:NERDTreeWinSize=60
     let NERDTreeQuitOnOpen=1
     let NERDChristmasTree = 1       " colored NERD Tree
     let NERDTreeHighlightCursorline = 1
