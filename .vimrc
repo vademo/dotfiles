@@ -28,15 +28,18 @@ endif
 colorscheme molokai
 set background=dark
 set cursorline
-hi CursorLine term=bold cterm=bold ctermbg=Darkgrey
+hi CursorLine term=bold cterm=bold ctermbg=24
+hi Visual term=bold cterm=bold ctermbg=208
 " Default Colors for CursorLine
 highlight  CursorLine ctermbg=Blue ctermfg=None
 
 " Change Color when entering Insert Mode
-autocmd InsertEnter * highlight  CursorLine ctermbg=Darkgrey ctermfg=None
+autocmd InsertEnter * highlight  CursorLine ctermbg=25 ctermfg=None
 
 " Revert Color to default when leaving Insert Mode
 autocmd InsertLeave * highlight  CursorLine ctermbg=Blue  ctermfg=None
+
+" }}}
 " Autocomplete {{{
 set completeopt=longest,menuone
 
