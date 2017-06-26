@@ -25,7 +25,7 @@ set rtp+=/usr/local/opt/fzf
 if !exists("g:syntax_on")
     syntax enable       " enable syntax processing
 endif
-colorscheme molokai
+colorscheme vademo
 set background=dark
 set cursorline
 hi CursorLine term=bold cterm=bold ctermbg=24
@@ -38,6 +38,7 @@ autocmd InsertEnter * highlight  CursorLine ctermbg=25 ctermfg=None
 
 " Revert Color to default when leaving Insert Mode
 autocmd InsertLeave * highlight  CursorLine ctermbg=Blue  ctermfg=None
+
 
 " }}}
 " Autocomplete {{{
