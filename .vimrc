@@ -171,7 +171,7 @@ nnoremap <leader>S :mksession<CR>
     let g:ctrlp_working_path_mode = 0
     let g:ctrlp_extensions = ['tag']
     let g:ctrlp_show_hidden = 1
-    let g:ctrlp_custom_ignore ='\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|node_modules$\|project_files$\|build$\'
+    let g:ctrlp_custom_ignore ='\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|build$\|node_modules$\|project_files$\|build$\'
 
     " }}}
     " NERDTree {{{
