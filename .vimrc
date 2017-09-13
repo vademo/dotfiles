@@ -204,6 +204,7 @@ nnoremap <leader>S :mksession<CR>
     nmap <silent> <C-k> <Plug>(ale_previous_wrap)
     nmap <silent> <C-j> <Plug>(ale_next_wrap)
     let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+    let g:ale_linters = { 'javascript': ['eslint'],}
     " }}}
     " Startify {{{
     let g:startify_change_to_dir = 0
