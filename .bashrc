@@ -22,3 +22,5 @@ alias dcup='docker-compose up'
 alias dcdn='docker-compose down'
 alias dcl='docker-compose logs'
 alias dclf='docker-compose logs -f'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
