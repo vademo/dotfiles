@@ -257,5 +257,5 @@ Plug 'ervandew/supertab'
 
 call plug#end()
 " }}}
-
+let @p = 'fascoolj0'
 " vim:foldmethod=marker:foldlevel=0

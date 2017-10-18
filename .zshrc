@@ -92,3 +92,9 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+
+# Alias for killing background processes by id
+KillProcessById() { kill -9 $(lsof -t -i:"$1"); }
+
