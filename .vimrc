@@ -171,7 +171,7 @@ nnoremap <leader>S :mksession<CR>
     let g:ctrlp_working_path_mode = 0
     let g:ctrlp_extensions = ['tag']
     let g:ctrlp_show_hidden = 1
-    let g:ctrlp_custom_ignore ='\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|build$\|node_modules$\|project_files$\|build$\'
+    let g:ctrlp_custom_ignore ='\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|build$\|node_modules$\|project_files$\|build$\|coverage$\'
 
     " }}}
     " NERDTree {{{
@@ -221,7 +221,7 @@ nnoremap <leader>S :mksession<CR>
     nmap <silent> <leader>a :TestSuite<CR>
     nmap <silent> <leader>r :TestLast<CR>
     nmap <silent> <leader>g :TestVisit<CR>
-    let test#strategy = "dispatch"
+    " let test#strategy = "dispatch"
     " }}}
 " }}}
 " Vim silversearch{{{
@@ -253,9 +253,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'ervandew/supertab'
-
+Plug 'tpope/vim-dispatch'
 
 call plug#end()
 " }}}
-let @p = 'fascoolj0'
-" vim:foldmethod=marker:foldlevel=0
+" Usefull predefined Macros {{{
+    " Add single '' around current word
+    let @n = "viws'jjp"
+    let @l = 'viws"jjp'
+    nmap pp @n
+    nmap ppp @l
+    nmap PP :%s/\"\([^"]*\)\"/'\1'/gc<CR>
+" }}}
+" vSequelizeim:foldmethod=marker:foldlevel=0

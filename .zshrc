@@ -96,5 +96,5 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 
 # Alias for killing background processes by id
-KillProcessById() { kill -9 $(lsof -t -i:"$1"); }
+KillLocalProcessByPort() { kill -9 $(lsof -t -i:"$1"); }
 
