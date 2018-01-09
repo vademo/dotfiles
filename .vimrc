@@ -12,6 +12,8 @@ set hidden                  " Allow new buffer without saving and closing other 
 set timeoutlen=500          " Wait only 0,5s for key combination to complete
 set encoding=utf-8
 set spelllang=en_gb
+set noeb vb t_vb=
+
 nmap <silent> <leader>z :set spell!<CR>     " Easily spell check
 nnoremap <leader>q <C-w>q
 map zx :wqa<CR>
@@ -171,7 +173,7 @@ nnoremap <leader>S :mksession<CR>
     let g:ctrlp_working_path_mode = 0
     let g:ctrlp_extensions = ['tag']
     let g:ctrlp_show_hidden = 1
-    let g:ctrlp_custom_ignore ='\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|build$\|node_modules$\|project_files$\|build$\|coverage$\'
+    let g:ctrlp_custom_ignore ='\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|build$\|node_modules$\|project_files$\|build$\|coverage$\|coverage$\'
 
     " }}}
     " NERDTree {{{
@@ -230,6 +232,12 @@ nnoremap <leader>S :mksession<CR>
 
 
 " }}}
+" Vim ultisnips{{{
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsEditSplit="vertical"
+vertical
+" }}}
 " Vim Plug {{{
 call plug#begin('~/.vim/bundle')
 Plug 'takac/vim-hardtime'
@@ -254,13 +262,22 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-dispatch'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 call plug#end()
 " }}}
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 " Usefull predefined Macros {{{
     " Add single '' around current word
-    let @n = "viws'jjp"
-    let @l = 'viws"jjp'
+    let @n = "viws'\ep"
+    let @l = 'viws"\ep'
     nmap pp @n
     nmap ppp @l
     nmap PP :%s/\"\([^"]*\)\"/'\1'/gc<CR>
