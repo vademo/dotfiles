@@ -178,6 +178,7 @@ nnoremap <leader>S :mksession<CR>
     " }}}
     " NERDTree {{{
     map <leader>n :NERDTree<CR>
+    map <leader>b :NERDTreeToggle<CR>
     map <C-n> :NERDTreeToggle<CR>
     let g:NERDTreeWinSize=60
     let NERDTreeQuitOnOpen=1
@@ -263,6 +264,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-dispatch'
 Plug 'SirVer/ultisnips'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 " }}}
@@ -276,7 +278,7 @@ let g:UltiSnipsEditSplit="vertical"
 " Usefull predefined Macros {{{
     " Add single '' around current word
     let @n = "viws'\ep"
-    let @l = 'viws"\ep'
+    let @l = 'viws"jjp'
     nmap pp @n
     nmap ppp @l
     nmap PP :%s/\"\([^"]*\)\"/'\1'/gc<CR>
