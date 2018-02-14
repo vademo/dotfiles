@@ -1,0 +1,91 @@
+snippet exports "module exports"
+module.exports = exports = {
+	$1
+}
+endsnippet
+
+snippet header "header" b
+/**
+ * `!p snip.rv = snip.fn`
+ * `!v expand('%:h')`
+ *
+ * Created by Olivier Van den Mooter on `date +%d/%m/%Y`.
+ * Copyright (c) 2017 iCapps. All rights reserved.
+ */
+
+'use strict';
+$0
+endsnippet
+
+snippet req "module require"
+const $1 = require('$1');
+$0
+endsnippet
+
+snippet reqh "src/shared/helpers"
+const $1 = require(base('src/shared/helpers/$1'));
+endsnippet
+
+snippet reqs "src/shared/services"
+const $1 = require(base('src/shared/services/$1'));
+endsnippet
+
+snippet reqd "src/shared/data-access-layer"
+const $1 = require(base('src/shared/data-access-layer')).$1;
+endsnippet
+
+snippet reqi "src/shared/inflators"
+const $1 = require(base('src/shared/inflators/$2'));
+endsnippet
+
+snippet reqt "test/"
+const $1 = require(base('test/$2'));
+endsnippet
+
+snippet dal "data-access-layer"
+const DAL = require(base('src/shared/data-access-layer'));
+$0
+endsnippet
+
+snippet qual "queue-access-layer"
+const QuAL = require(base('src/shared/queue-access-layer'));
+$0
+endsnippet
+
+snippet log "debug with console.log"
+console.log('@@@@@@@@@@@@@@@@@@@@@');
+console.log('$1', JSON.stringify($1, null, 2));
+console.log('@@@@@@@@@@@@@@@@@@@@@');
+endsnippet
+
+snippet print "debug with console.log"
+console.log('@@@@@@@@@@@@@@@@@@@@@');
+console.log('$1');
+console.log('@@@@@@@@@@@@@@@@@@@@@');
+endsnippet
+
+snippet it "testing it block"
+it('$1', () => {
+	$2
+});
+endsnippet
+
+snippet desc "describe testing block"
+describe('$1', () => {
+	it('$2', () => {
+		$3
+	});
+});
+endsnippet
+
+snippet appget "app.get route"
+app.get('$1', function(request, response) {
+	$2
+})
+endsnippet
+
+snippet apppost "app.post route"
+app.post('$1', function(request, response) {
+	$2
+})
+endsnippet
