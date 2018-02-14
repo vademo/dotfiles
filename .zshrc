@@ -139,4 +139,4 @@ export PATH=$ANDROID_SDK_ROOT/tools:$PATH
 # Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
 export COCOS_TEMPLATES_ROOT="/Applications/Cocos/Cocos2d-x/cocos2d-x-3.5/templates"
 export PATH=$COCOS_TEMPLATES_ROOT:$PATH
-export LC_ALL=en_US.UTF-8
+# export LC_ALL=en_US.UTF-8

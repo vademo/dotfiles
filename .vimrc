@@ -243,7 +243,7 @@
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'editorconfig/editorconfig-vim'    " load .editorconfig file
-    Plug 'ctrlpvim/ctrlp.vim'
+    " Plug 'ctrlpvim/ctrlp.vim'
     Plug 'Raimondi/delimitMate'
     Plug 'roman/golden-ratio'
     Plug 'scrooloose/nerdtree'
@@ -259,11 +259,11 @@
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-surround'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
     Plug 'ervandew/supertab'
     Plug 'tpope/vim-dispatch'
     Plug 'SirVer/ultisnips'
     Plug 'airblade/vim-gitgutter'
-
     call plug#end()
 " }}}
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -281,4 +281,7 @@
         nmap ppp @l
         nmap PP :%s/\"\([^"]*\)\"/'\1'/gc<CR>
 " }}}
-" vSequelizeim:foldmethod=marker:foldlevel=0
+" let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g  ""'
+nnoremap <silent> <C-p> :FZF -m<cr>
+
