@@ -97,7 +97,8 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # Alias for killing background processes by id
 KillLocalProcessByPort() { kill -9 $(lsof -t -i:"$1"); }
-
+dcstart() {docker stop $(docker ps -a -q) && docker-compose up -d $1 }
+dcstop() {docker stop $(docker ps -a -q)}
 
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
 export COCOS_CONSOLE_ROOT="/Applications/Cocos/Cocos2d-x/cocos2d-x-3.5/tools/cocos2d-console/bin"
