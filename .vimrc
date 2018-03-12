@@ -1,5 +1,3 @@
-" example vimrc
-
 " Common sense settings {{{
     set nocompatible             " do not maintain vi compatibility
     let mapleader=","
@@ -22,6 +20,7 @@
     filetype plugin on
     set omnifunc=syntaxcomplete#Complete
     set rtp+=/usr/local/opt/fzf
+
 " }}}
 " Colors {{{
     if !exists("g:syntax_on")
@@ -37,10 +36,8 @@
 
     " Change Color when entering Insert Mode
     autocmd InsertEnter * highlight  CursorLine ctermbg=25 ctermfg=None
-
     " Revert Color to default when leaving Insert Mode
     autocmd InsertLeave * highlight  CursorLine ctermbg=Blue  ctermfg=None
-
 
 " }}}
 " Autocomplete {{{
@@ -174,7 +171,6 @@
         let g:ctrlp_extensions = ['tag']
         let g:ctrlp_show_hidden = 1
         let g:ctrlp_custom_ignore ='\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|build$\|node_modules$\|project_files$\|build$\|coverage$\|coverage$\'
-
     " }}}
     " NERDTree {{{
         map <leader>n :NERDTree<CR>
@@ -224,7 +220,6 @@
         nmap <silent> <leader>a :TestSuite<CR>
         nmap <silent> <leader>r :TestLast<CR>
         nmap <silent> <leader>g :TestVisit<CR>
-    " let test#strategy = "dispatch"
     " }}}
 " }}}
 " Vim silversearch{{{
@@ -261,7 +256,7 @@
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'ervandew/supertab'
-    Plug 'tpope/vim-dispatch'
+    " Plug 'tpope/vim-dispatch'
     Plug 'SirVer/ultisnips'
     Plug 'airblade/vim-gitgutter'
     call plug#end()
