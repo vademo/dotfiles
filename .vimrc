@@ -95,6 +95,11 @@
     set backupskip=/tmp/*,/private/tmp/*
     set directory^=$HOME/.vim/tmp//
     set writebackup
+    " disable swap
+    set noswapfile
+    " check one time after 4s of inactivity in normal mode
+    set autoread
+    au CursorHold * checktime
 " }}}
 " Spaces & Tabs {{{
     set tabstop=4           " 4 space tab
@@ -259,6 +264,7 @@
     " Plug 'tpope/vim-dispatch'
     Plug 'SirVer/ultisnips'
     Plug 'airblade/vim-gitgutter'
+    Plug 'djoshea/vim-autoread'
     call plug#end()
 " }}}
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -266,6 +272,11 @@
     let g:UltiSnipsJumpForwardTrigger="<c-j>"
     let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
+    source ~/.vim/bundle/vim-autoread/plugin/autoread.vim
+
+    let autoreadargs={'autoread':1}
+        execute WatchForChanges("*", autoreadargs)
+" set WatchForChanges=1
     " If you want :UltiSnipsEdit to split your window.
     let g:UltiSnipsEditSplit="vertical"
 " Usefull predefined Macros {{{
@@ -273,6 +284,7 @@
         let @n = "viws'\ep"
         let @l = 'viws"jjp'
         nmap pp @n
+        nmap .. :edit .env<CR>
         nmap ppp @l
         nmap PP :%s/\"\([^"]*\)\"/'\1'/gc<CR>
 " }}}
