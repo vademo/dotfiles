@@ -14,6 +14,8 @@
 
     nmap <silent> <leader>z :set spell!<CR>     " Easily spell check
     nnoremap <leader>q <C-w>q
+    nnoremap <silent> <Leader>) :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+    nnoremap <silent> <Leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
     map zx :wqa<CR>
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y yy
@@ -38,7 +40,6 @@
     autocmd InsertEnter * highlight  CursorLine ctermbg=25 ctermfg=None
     " Revert Color to default when leaving Insert Mode
     autocmd InsertLeave * highlight  CursorLine ctermbg=Blue  ctermfg=None
-
 " }}}
 " Autocomplete {{{
     set completeopt=longest,menuone
@@ -239,6 +240,7 @@
 " }}}
 " Vim Plug {{{
     call plug#begin('~/.vim/bundle')
+    Plug 'cakebaker/scss-syntax.vim'
     Plug 'takac/vim-hardtime'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'

@@ -9,9 +9,6 @@ export ZSH=~/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="agnoster"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
@@ -94,11 +91,15 @@ export PATH="$PATH:$HOME/.rvm/bin"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
-
+todo() { todolist $1 $2 $3}
 # Alias for killing background processes by id
 KillLocalProcessByPort() { kill -9 $(lsof -t -i:"$1"); }
+# Alias staring docker of project
 dcstart() {docker stop $(docker ps -a -q) && docker-compose up -d $1 }
 dcstop() {docker stop $(docker ps -a -q)}
+dcstop() {docker stop $(docker ps -a -q)}
+
+whattodo() {grep -rnw ./ -e @TODO --exclude-dir=node_modules}
 
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
 export COCOS_CONSOLE_ROOT="/Applications/Cocos/Cocos2d-x/cocos2d-x-3.5/tools/cocos2d-console/bin"
@@ -140,4 +141,4 @@ export PATH=$ANDROID_SDK_ROOT/tools:$PATH
 # Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
 export COCOS_TEMPLATES_ROOT="/Applications/Cocos/Cocos2d-x/cocos2d-x-3.5/templates"
 export PATH=$COCOS_TEMPLATES_ROOT:$PATH
-# export LC_ALL=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
