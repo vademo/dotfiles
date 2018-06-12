@@ -209,7 +209,8 @@
         nmap <silent> <C-k> <Plug>(ale_previous_wrap)
         nmap <silent> <C-j> <Plug>(ale_next_wrap)
         let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-        let g:ale_linters = { 'javascript': ['eslint'],}
+        let g:ale_completion_enabled = 1
+        let g:ale_linters = { 'javascript': ['eslint'],'typescript': ['tslint', 'tsserver']}
     " }}}
     " Startify {{{
         let g:startify_change_to_dir = 0

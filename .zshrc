@@ -8,6 +8,7 @@ export ZSH=~/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="agnoster"
+DEFAULT_USER="$(whoami)"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -142,3 +143,5 @@ export PATH=$ANDROID_SDK_ROOT/tools:$PATH
 export COCOS_TEMPLATES_ROOT="/Applications/Cocos/Cocos2d-x/cocos2d-x-3.5/templates"
 export PATH=$COCOS_TEMPLATES_ROOT:$PATH
 export LC_ALL=en_US.UTF-8
+# export PATH=$(brew --prefix openssl)/bin:$PATH in ~/.bash_profile
+
