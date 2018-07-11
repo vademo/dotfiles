@@ -102,6 +102,8 @@ dcstop() {docker stop $(docker ps -a -q)}
 
 whattodo() {grep -rnw ./ -e @TODO --exclude-dir=node_modules}
 
+enterContainer() { docker exec -it $1 bash }
+
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
 export COCOS_CONSOLE_ROOT="/Applications/Cocos/Cocos2d-x/cocos2d-x-3.5/tools/cocos2d-console/bin"
 export PATH=$COCOS_CONSOLE_ROOT:$PATH
