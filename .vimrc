@@ -11,6 +11,8 @@
     set encoding=utf-8
     set spelllang=en_gb
     set noeb vb t_vb=
+    " set synmaxcol=128           "stop syncax highlight"
+    " syntax sync minlines=256
 
     nmap <silent> <leader>z :set spell!<CR>     " Easily spell check
     nnoremap <leader>q <C-w>q
@@ -115,11 +117,11 @@
     " }}}
     " UI Layout {{{
     set number              " show line numbers
-    set relativenumber
+    " set relativenumber
     set numberwidth=5
     set ruler               " show the cursor position all the time
     set showcmd             " show command in bottom bar
-    set nocursorline        " highlight current line
+    " set nocursorline        " highlight current line
     set wildmenu            " visual autocomplete for command menu
     set lazyredraw          " redraw screen only when we need to.
     set showmatch           " higlight matching parenthesis
