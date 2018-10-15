@@ -3,7 +3,8 @@
 ## Getting started
 
 - `brew update && brew install vim`
-
+- `brew install getantibody/tap/antibody`
+- `antibody bundle caarlos0/open-pr kind:path`
 - Install plugin manager [Vim Plug](https://github.com/junegunn/vim-plug)
 
 - Save [vimrc.example](./vimrc.example) to `$HOME/.vimrc`

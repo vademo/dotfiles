@@ -109,6 +109,11 @@ enterContainer() { docker exec -it $1 bash }
 dockerenter() { docker exec -it $1 bash }
 
 dockerlogs() { docker logs --follow $1 }
+dockerlogsbyName() {
+    DOCKER_ID= docker ps -aqf name=$1
+    echo 'log' + $DOCKER_ID
+    docker logs --follow $DOCKER_ID
+}
 #Restart single container by name
 dockerrestart() {
     # CONTAINER='$(docker ps -a -q --filter="name='$1'")';
@@ -116,6 +121,12 @@ dockerrestart() {
   echo"restart file $1";
   docker stop $(docker ps -a -q --filter="name=$2") && docker-compose -f $1 up --force-recreate $2
 }
+source <(antibody init)
+
+gpr() {
+    git push origin HEAD && git open-pr "$@"
+}
+
 
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
 export COCOS_CONSOLE_ROOT="/Applications/Cocos/Cocos2d-x/cocos2d-x-3.5/tools/cocos2d-console/bin"
