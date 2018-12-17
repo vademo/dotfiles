@@ -110,7 +110,7 @@ dockerenter() { docker exec -it $1 bash }
 
 dockerlogs() { docker logs --follow $1 }
 dockerlogsbyName() {
-    DOCKER_ID= docker ps -aqf name=$1
+    DOCKER_ID=$(docker ps -aqf name=$1)
     echo 'log' + $DOCKER_ID
     docker logs --follow $DOCKER_ID
 }
