@@ -11,8 +11,8 @@
     set encoding=utf-8
     set spelllang=en_gb
     set noeb vb t_vb=
-    " set synmaxcol=128           "stop syncax highlight"
-    " syntax sync minlines=256
+    set synmaxcol=128           "stop syncax highlight"
+    syntax sync minlines=256
 
     nmap <silent> <leader>z :set spell!<CR>     " Easily spell check
     nnoremap <leader>q <C-w>q
