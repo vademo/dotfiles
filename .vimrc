@@ -11,8 +11,8 @@
     set encoding=utf-8
     set spelllang=en_gb
     set noeb vb t_vb=
-    set synmaxcol=128           "stop syncax highlight"
-    syntax sync minlines=256
+    set synmaxcol=160           "stop syncax highlight"
+    syntax sync minlines=128
 
     nmap <silent> <leader>z :set spell!<CR>     " Easily spell check
     nnoremap <leader>q <C-w>q
@@ -74,6 +74,8 @@
         " Set syntax highlighting for specific file types
         autocmd BufRead,BufNewFile *.ejs set filetype=html
         autocmd BufRead,BufNewFile *.md set filetype=markdown
+        autocmd FileType *.ejs set synmaxcol=160
+        autocmd FileType *.html set synmaxcol=128
 
         " Enable spellchecking for Markdown
         autocmd FileType markdown setlocal spell
@@ -91,6 +93,7 @@
         autocmd FileType javascript setl sw=4 sts=4 et
         autocmd FileType javascript set textwidth=100
     augroup END
+    nnoremap <leader><space> :set cursorline!<cr>
 " }}}
 " Backups {{{
     set backup
@@ -136,13 +139,14 @@
     set incsearch                       " search as characters are entered
     set hlsearch                        " highlight all matches
     " No highlight after a search
-    nnoremap <leader><space> :noh<cr>
+    " nnoremap <leader><space> :noh<cr>
     " search next/previous -- center in page
     nmap n nzz
     nmap N Nzz
 " }}}
 " Folding {{{
-    set foldmethod=indent   " fold based on indent level
+    " set foldmethod=indent   " fold based on indent level
+    set foldmethod=syntax   " fold based on indent level
     set foldnestmax=10      " max 10 depth
     set foldenable          " don't fold files by default on open
     set foldlevelstart=10   " start with fold level of 1
@@ -167,7 +171,7 @@
     nnoremap <leader>ev :vsp $MYVIMRC<CR>
     nnoremap <leader>ez :vsp ~/.zshrc<CR>
     nnoremap <leader>sv :source $MYVIMRC<CR>
-    nnoremap <leader><space> :noh<CR>
+    " nnoremap <leader><space> :noh<CR>
     vnoremap <leader>y "+y      " yank to clipboard
     nnoremap <leader>S :mksession<CR>
 " }}}
@@ -190,7 +194,7 @@
         let NERDTreeHighlightCursorline = 1
         let NERDTreeShowHidden = 1
         let NERDTreeMapActivateNode='<space>'
-        let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf', '.beam']
+        let NERDTreeIgnore=['\.git','\.DS_Store']
     " }}}
     " Airline {{{
         let g:airline#extensions#tabline#enabled = 1
