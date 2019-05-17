@@ -18,6 +18,9 @@
 
 ## Modal editing
 
+## Tmux
+- cpu usage `brew install tmux-mem-cpu-load`
+
 ### NORMAL MODE
 
 - Use <ESC> to get into normal mode
