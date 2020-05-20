@@ -3,6 +3,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -95,7 +96,10 @@ gitbranches() {
     git for-each-ref --sort=-committerdate refs/heads/ --format='%(authordate:short) %(color:red)%(objectname:short) %(color:yellow)%(refname:short)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))'
 }
 
-todo() { todolist $1 $2 $3}
+py() { python3 $1 }
+
+todo() { tb }
+todod() { tb -l digipolis }
 # Alias for killing background processes by id
 KillLocalProcessByPort() { kill -9 $(lsof -t -i:"$1"); }
 # Alias staring docker of project
@@ -106,12 +110,19 @@ dcstop() {docker stop $(docker ps -a -q)}
 whattodo() {grep -rnw ./ -e @TODO --exclude-dir=node_modules}
 
 enterContainer() { docker exec -it $1 bash }
-dockerenter() { docker exec -it $1 bash }
+
+enterContainerbyName() {
+    DOCKER_ID="$(docker ps -qf name=$1)"
+    echo 'log'.$DOCKER_ID
+    docker exec -it $DOCKER_ID bash
+}
+
+showStash() { git stash apply stash@{$1} }
 
 dockerlogs() { docker logs --follow $1 }
 dockerlogsbyName() {
-    DOCKER_ID=$(docker ps -aqf name=$1)
-    echo 'log' + $DOCKER_ID
+    DOCKER_ID="$(docker ps -qf name=$1)"
+    echo 'log'.$DOCKER_ID
     docker logs --follow $DOCKER_ID
 }
 #Restart single container by name
@@ -126,48 +137,4 @@ source <(antibody init)
 gpr() {
     git push origin HEAD && git open-pr "$@"
 }
-
-
-# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
-export COCOS_CONSOLE_ROOT="/Applications/Cocos/Cocos2d-x/cocos2d-x-3.5/tools/cocos2d-console/bin"
-export PATH=$COCOS_CONSOLE_ROOT:$PATH
-
-# Add environment variable COCOS_X_ROOT for cocos2d-x
-export COCOS_X_ROOT="/Applications/Cocos/Cocos2d-x"
-export PATH=$COCOS_X_ROOT:$PATH
-
-# Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
-# export COCOS_TEMPLATES_ROOT="/Applications/Cocos/Cocos2d-x/cocos2d-x-3.16/templates"
-# export PATH=$COCOS_TEMPLATES_ROOT:$PATH
-#
-# Cocos2d-x requirements to build Zomerbingel
-# Add environment variable COCOS_FRAMEWORKS for cocos2d-x
-export COCOS_FRAMEWORKS=/Applications/Cocos
-export PATH=$COCOS_FRAMEWORKS:$PATH
-
-# Add environment variable ANT_ROOT for cocos2d-x
-export ANT_ROOT=/Applications/Cocos/tools/ant/bin
-export PATH=$ANT_ROOT:$PATH
-export PATH=$PATH:/Applications/Cocos/tools/android-sdks/platform-tools
-
-# Add environment variables for Android NDK(cocos specific)
-# export NDK_ROOT=/Applications/Cocos/tools/android-ndk-r10d/
-export NDK_ROOT=/Applications/Cocos/tools/android-ndk-r10e/
-export PATH=$NDK_ROOT:$PATH
-
-# Add environment varibales for Android NDK(general)
-export ANDROID_NDK=/Applications/Cocos/tools/android-ndk-r10d/
-export PATH=$ANDROID_NDK:$PATH
-
-# Add environment variable for Android SDK
-# export ANDROID_SDK_ROOT=/Users/oliviervandenmooter/Library/Android/sdk
-export ANDROID_SDK_ROOT=/Applications/Cocos/tools/android-sdks/
-export PATH=$ANDROID_SDK_ROOT/platform-tools:$PATH
-export PATH=$ANDROID_SDK_ROOT/tools:$PATH
-
-# Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
-export COCOS_TEMPLATES_ROOT="/Applications/Cocos/Cocos2d-x/cocos2d-x-3.5/templates"
-export PATH=$COCOS_TEMPLATES_ROOT:$PATH
-export LC_ALL=en_US.UTF-8
-# export PATH=$(brew --prefix openssl)/bin:$PATH in ~/.bash_profile
 
