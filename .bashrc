@@ -23,3 +23,4 @@ alias dcl='docker-compose logs'
 alias dclf='docker-compose logs -f'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. "$HOME/.cargo/env"
