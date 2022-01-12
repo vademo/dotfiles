@@ -80,9 +80,10 @@
 
         " Enable spellchecking for Markdown
         autocmd FileType markdown setlocal spell
+        autocmd FileType markdown set textwidth=500
 
         " Automatically wrap at 80 characters for Markdown
-        autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+        " autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 
         " Automatically wrap at 72 characters and spell check git commit messages
         autocmd FileType gitcommit setlocal textwidth=72
@@ -96,11 +97,13 @@
     augroup END
 " }}}
 " Backups {{{
-    set backup
-    set backupdir=$HOME/.vim/tmp//
-    set backupskip=/tmp/*,/private/tmp/*
-    set directory^=$HOME/.vim/tmp//
-    set writebackup
+    " set backup
+    " set backupdir=$HOME/.vim/tmp//
+    " set backupskip=/tmp/*,/private/tmp/*
+    " set directory^=$HOME/.vim/tmp//
+    " set writebackup
+    set nobackup nowritebackup
+
     " disable swap
     set noswapfile
     " check one time after 4s of inactivity in normal mode
