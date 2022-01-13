@@ -196,7 +196,7 @@
         let NERDTreeHighlightCursorline = 1
         let NERDTreeShowHidden = 1
         let NERDTreeMapActivateNode='<space>'
-        let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf', '.beam']
+        let NERDTreeIgnore=['\.git$','\.DS_Store','\.pdf', '.beam']
     " }}}
     " Airline {{{
     let g:airline_theme='dark_minimal'
