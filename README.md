@@ -4,6 +4,7 @@
 
 - `brew update && brew install vim`
 - `brew install getantibody/tap/antibody`
+- `brew install reattach-to-user-namespace`
 - `antibody bundle caarlos0/open-pr kind:path`
 - `git config --global alias.pr open-pr`
 - Install plugin manager [Vim Plug](https://github.com/junegunn/vim-plug)
