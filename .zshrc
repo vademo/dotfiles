@@ -1,5 +1,11 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+#
+# disable docker buildkit for podman
+export DOCKER_BUILDKIT=0
+# export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jre/Contents/Home/
+# export ANDROID_HOME=~/Library/Android/sdk/
+# export ANDROID_SDK_ROOT=~/Library/Android/sdk/
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -105,7 +111,21 @@ KillLocalProcessByPort() { kill -9 $(lsof -t -i:"$1"); }
 # Alias staring docker of project
 dcstart() {docker stop $(docker ps -a -q) && docker-compose up -d $1 }
 dcstop() {docker stop $(docker ps -a -q)}
-dcstop() {docker stop $(docker ps -a -q)}
+pcstop() {podman stop $(podman ps -a -q)}
+connectPodman() {
+    if [[ -n $1 ]]; then
+        # 501 is user i suppose it wont change
+      ssh -fnNT -L/tmp/podman.sock:/run/user/501/podman/podman.sock -i ~/.ssh/podman-machine-default ssh://core@localhost:$1 -o StreamLocalBindUnlink=yes
+      export DOCKER_HOST='unix:///tmp//podman.sock'
+    else
+      echo "$1"
+      podman system connection list
+    fi
+    # podman system connection list
+    # ssh -fnNT -L/tmp/podman.sock:/run/user/501/podman/podman.sock -i ~/.ssh/podman-machine-default ssh://core@localhost:49514 -o StreamLocalBindUnlink=yes
+
+    # export DOCKER_HOST='unix:///tmp//podman.sock'
+}
 
 whattodo() {grep -rnw ./ -e @TODO --exclude-dir=node_modules}
 
@@ -117,12 +137,26 @@ enterContainerbyName() {
     docker exec -it $DOCKER_ID bash
 }
 
+switchgit() {
+  var=$(<~/.ssh/config)
+  if [[ $var == *"digipolis"*  ]]; then
+      echo "switching to Personal 🤖"
+      sed -i .bak 's/digipolis_id_ed25519/id_rsa/g' /Users/oliviervandenmooter/.ssh/config
+  else
+      echo "switching to Digipolis 🌆"
+      sed -i .bak 's/id_rsa/digipolis_id_ed25519/g' /Users/oliviervandenmooter/.ssh/config
+  fi
+}
+
+echo "Using personal key git 🤖"
+sed -i .bak 's/digipolis_id_ed25519/id_rsa/g' /Users/oliviervandenmooter/.ssh/config
+
 showStash() { git stash apply stash@{$1} }
 
 dockerlogs() { docker logs --follow $1 }
 dockerlogsbyName() {
     DOCKER_ID="$(docker ps -qf name=$1)"
-    echo 'log'.$DOCKER_ID
+    echo 'found container with id: '.$DOCKER_ID
     docker logs --follow $DOCKER_ID
 }
 #Restart single container by name
@@ -132,9 +166,18 @@ dockerrestart() {
   echo"restart file $1";
   docker stop $(docker ps -a -q --filter="name=$2") && docker-compose -f $1 up --force-recreate $2
 }
-source <(antibody init)
+# source <(antibody init)
 
-gpr() {
-    git push origin HEAD && git open-pr "$@"
-}
+# gpr() {
+#     git push origin HEAD && git open-pr "$@"
+# }
 
+
+
+# Load Angular CLI autocompletion.
+
+# Created by `pipx` on 2024-03-22 13:49:08
+export PATH="$PATH:/Users/oliviervandenmooter/.local/bin"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
