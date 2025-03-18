@@ -139,17 +139,17 @@ enterContainerbyName() {
 
 switchgit() {
   var=$(<~/.ssh/config)
-  if [[ $var == *"digipolis"*  ]]; then
+  if [[ $var == *"id_ed25519"*  ]]; then
       echo "switching to Personal 🤖"
-      sed -i .bak 's/digipolis_id_ed25519/id_rsa/g' /Users/oliviervandenmooter/.ssh/config
+      sed -i 's/id_ed25519/vademo_ed25519/g' /home/olivier/.ssh/config
   else
       echo "switching to Digipolis 🌆"
-      sed -i .bak 's/id_rsa/digipolis_id_ed25519/g' /Users/oliviervandenmooter/.ssh/config
+      sed -i 's/vademo_ed25519/id_ed25519/g' /home/olivier/.ssh/config
   fi
 }
 
-echo "Using personal key git 🤖"
-sed -i .bak 's/digipolis_id_ed25519/id_rsa/g' /Users/oliviervandenmooter/.ssh/config
+echo "Using digipolis key git 🌆"
+sed -i 's/vademo_ed25519/id_ed25519/g' /home/olivier/.ssh/config
 
 showStash() { git stash apply stash@{$1} }
 
