@@ -11,10 +11,23 @@
 - Save [vimrc.example](./vimrc.example) to `$HOME/.vimrc`
 
 - Open vim: `vim`
-
+- install vim plug
+- curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 - Install plugins: `:PlugInstall`
 
 - Open your .vimrc: `:e ~/.vimrc`
+
+## zsh 
+
+install zsh
+apt-install zsh 
+
+install oh my zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+
+
 
 ## Modal editing
 

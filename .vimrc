@@ -199,8 +199,7 @@
         let NERDTreeIgnore=['\.git$','\.DS_Store','\.pdf', '.beam']
     " }}}
     " Airline {{{
-    let g:airline_theme='dark_minimal'
-
+        let g:airline_theme='dark_minimal'
         let g:airline#extensions#tabline#enabled = 1
         let g:airline#extensions#tabline#fnamemod = ':t'
         let g:airline_powerline_fonts = 2
@@ -328,9 +327,31 @@ function! MySpellLang()
   let g:myLang = g:myLang + 1
   if g:myLang >= len(g:myLangList) | let g:myLang = 0 | endif
 endfunction
+
+functio! SetLight()
+    let g:airline_theme='papercolor'
+    colorscheme vademolight
+    set background=light
+    autocmd InsertEnter * highlight  CursorLine ctermbg=195 ctermfg=None term=bold cterm=bold
+    " Revert Color to default when leaving Insert Mode
+    autocmd InsertLeave * highlight  CursorLine ctermbg=153  ctermfg=None
+endfunction
+
+command! SetLight call SetLight()
+
 nnoremap <silent> <F1> :call  MySpellLang()<CR>
 
 hi VertSplit ctermfg=44
 let g:fzf_layout = { 'down': '~40%' }
+" Show the syntax highlight group under cursor
 
-hi StatusLine ctermbg=31
+nnoremap <F12> <cmd>echo "linenumber" line(".").":".col(".")
+    \ " Variable Name <"
+    \ .synIDattr(synIDtrans(synID(line("."), col("."), 1)),"name"). ">"
+    \ " ctermfg=<"
+    \ .synIDattr(synIDtrans(synID(line("."), col("."), 1)), "fg"). ">"
+    \ " ctermbg=<"
+    \ .synIDattr(synIDtrans(synID(line("."), col("."), 1)), "bg"). ">"
+    \ <cr>
+
+" hi StatusLine ctermbg=31

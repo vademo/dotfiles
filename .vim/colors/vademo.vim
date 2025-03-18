@@ -22,8 +22,6 @@ if exists("g:vademo_original")
 else
     let s:vademo_original = 0
 endif
-
-
     let s:vademo_original = 1
 
 hi Boolean         guifg=#AE81FF
