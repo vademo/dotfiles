@@ -1,15 +1,11 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-#
-# disable docker buildkit for podman
 export DOCKER_BUILDKIT=0
-# export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jre/Contents/Home/
-# export ANDROID_HOME=~/Library/Android/sdk/
-# export ANDROID_SDK_ROOT=~/Library/Android/sdk/
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+export PATH=$PATH:/usr/bin/go/bin
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -165,6 +161,19 @@ dockerrestart() {
   echo"stop container $2";
   echo"restart file $1";
   docker stop $(docker ps -a -q --filter="name=$2") && docker-compose -f $1 up --force-recreate $2
+}
+
+setlightmode() {
+  VIM_MODE="LIGHT"
+  TMUX_MODE="LIGHT"
+  tmux set -g status-left '#[fg=#ffffff,bg=#005f87] %H:%M:%S  Date: #[fg=#ffe500]%d-%m-%Y  '
+  tmux set-option -g status-bg "#005f87" #base02
+  tmux set-option -g status-fg "#ffffff" #yellow
+  tmux set -g status-right '#[fg=#ffffff,bg=#005f87] Battery: #{battery_percentage} #[fg=#ffe500,bright] MEM/CPU: #(tmux-mem-cpu-load --averages-count 0)'
+
+  tmux set-window-option -g window-status-current-format '#[fg=#ffe500,bold]|> #[fg=blue,bold]#{window_index} #[fg=#00d700]#(echo "#{pane_current_path}" | rev | cut -d'/' -f-1 | rev) #[fg=#ffe500]<|'
+  tmux set-window-option -g window-status-format '#[fg=blue,bold]#{window_index} #[fg=green]#(echo "#{pane_current_path}" | rev | cut -d'/' -f-1 | rev) #[fg=yellow,bold]|'
+  export VIM_MODE
 }
 # source <(antibody init)
 

@@ -26,7 +26,6 @@
     filetype plugin on
     set omnifunc=syntaxcomplete#Complete
     set rtp+=/usr/local/opt/fzf
-
 " }}}
 " Colors {{{
     if !exists("g:syntax_on")
@@ -97,13 +96,7 @@
     augroup END
 " }}}
 " Backups {{{
-    " set backup
-    " set backupdir=$HOME/.vim/tmp//
-    " set backupskip=/tmp/*,/private/tmp/*
-    " set directory^=$HOME/.vim/tmp//
-    " set writebackup
     set nobackup nowritebackup
-
     " disable swap
     set noswapfile
     " check one time after 4s of inactivity in normal mode
@@ -117,9 +110,9 @@
     set shiftwidth=2        " Number of spaces to use for each step of (auto)indent.
     set shiftround
     set modelines=1
-    filetype indent on      " load filetype-specific indent files
+    " filetype indent on      " load filetype-specific indent files
     filetype plugin on
-    set autoindent
+    " set autoindent
     " }}}
     " UI Layout {{{
     set number              " show line numbers
@@ -239,15 +232,25 @@
         nmap <silent> <leader>g :TestVisit<CR>
     " }}}
 " }}}
+
 " Vim silversearch{{{
-    let g:ackprg = 'ag --nogroup --nocolor --column --silent'
+    let g:ackprg = 'ag --nogroup --nocolor --column --silent --hidden'
     let g:ags_winheight = '20'
 " }}}
+let g:fzf_preview_window = ['right:30%', 'ctrl-_']
+
+" command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden', fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden --ignore-dir .git', fzf#vim#with_preview(), <bang>0)
+
 " Vim ultisnips{{{
-        let g:UltiSnipsExpandTrigger="<tab>"
-        let g:UltiSnipsJumpForwardTrigger="<c-b>"
-        let g:UltiSnipsEditSplit="vertical"
-    vertical
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsEditSplit="vertical"
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-j>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+    source ~/.vim/bundle/vim-autoread/plugin/autoread.vim
 " }}}
 " Vim Plug {{{
     call plug#begin('~/.vim/bundle')
@@ -257,13 +260,11 @@
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'editorconfig/editorconfig-vim'    " load .editorconfig file
-    " Plug 'ctrlpvim/ctrlp.vim'
     Plug 'Raimondi/delimitMate'
     Plug 'roman/golden-ratio'
     Plug 'scrooloose/nerdtree'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'gabesoft/vim-ags'
-    " Plug 'Chiel92/vim-autoformat'
     Plug 'sheerun/vim-polyglot'
     Plug 'mhinz/vim-startify'
     Plug 'w0rp/ale'
@@ -275,7 +276,6 @@
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'ervandew/supertab'
-    " Plug 'tpope/vim-dispatch'
     Plug 'SirVer/ultisnips'
     Plug 'airblade/vim-gitgutter'
     Plug 'djoshea/vim-autoread'
@@ -285,23 +285,19 @@
     Plug 'plasticboy/vim-markdown'
     Plug 'rust-lang/rust.vim'
     Plug 'ryanoasis/vim-devicons'
+    Plug 'rhysd/vim-github-actions'
+    Plug 'will133/vim-dirdiff'
     call plug#end()
 " }}}
-    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-    let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<c-j>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
-    source ~/.vim/bundle/vim-autoread/plugin/autoread.vim
-" set filetypes as typescript.tsx
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
+" set filetypes as typescript.tsx {{{
+    autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
     let autoreadargs={'autoread':1}
-        execute WatchForChanges("*", autoreadargs)
-" set WatchForChanges=1
-    " If you want :UltiSnipsEdit to split your window.
-    let g:UltiSnipsEditSplit="vertical"
+    execute WatchForChanges("*", autoreadargs)
+" }}}
+
 " Usefull predefined Macros {{{
-        " Add single '' around current word
+    " Add single '' around current word
         let @n = "viws'\ep"
         let @l = 'viws"jjp'
         nmap pp @n
@@ -309,7 +305,7 @@ autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
         nmap ppp @l
         nmap PP :%s/\"\([^"]*\)\"/'\1'/gc<CR>
 " }}}
-" let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g  ""'
 
 nnoremap <silent> <C-p> :FZF -m<cr>
@@ -328,17 +324,25 @@ function! MySpellLang()
   if g:myLang >= len(g:myLangList) | let g:myLang = 0 | endif
 endfunction
 
-functio! SetLight()
-    let g:airline_theme='papercolor'
-    colorscheme vademolight
-    set background=light
-    autocmd InsertEnter * highlight  CursorLine ctermbg=195 ctermfg=None term=bold cterm=bold
-    " Revert Color to default when leaving Insert Mode
-    autocmd InsertLeave * highlight  CursorLine ctermbg=153  ctermfg=None
-endfunction
+" LIGHT MODE {{{
+    functio! SetLight()
+        let g:airline_theme='papercolor'
+        colorscheme vademolight
+        set background=light
+        autocmd InsertEnter * highlight  CursorLine ctermbg=195 ctermfg=None term=bold cterm=bold
+        " Revert Color to default when leaving Insert Mode
+        autocmd InsertLeave * highlight  CursorLine ctermbg=153  ctermfg=None
+    endfunction
 
-command! SetLight call SetLight()
+    command! SetLight call SetLight()
 
+    let vimmode=$VIM_MODE
+
+    if vimmode == 'LIGHT'
+        call SetLight()
+    endif
+" }}}
+"
 nnoremap <silent> <F1> :call  MySpellLang()<CR>
 
 hi VertSplit ctermfg=44
@@ -353,5 +357,3 @@ nnoremap <F12> <cmd>echo "linenumber" line(".").":".col(".")
     \ " ctermbg=<"
     \ .synIDattr(synIDtrans(synID(line("."), col("."), 1)), "bg"). ">"
     \ <cr>
-
-" hi StatusLine ctermbg=31
