@@ -11,7 +11,7 @@
     set encoding=utf-8
     set spelllang=en_gb
     set noeb vb t_vb=
-    set synmaxcol=300           "stop syntax highlight"
+    set synmaxcol=1000           "stop syntax highlight"
     syntax sync minlines=256
 
     nmap <silent> <leader>z :set spell!<CR>     " Easily spell check

@@ -175,6 +175,18 @@ setlightmode() {
   tmux set-window-option -g window-status-format '#[fg=blue,bold]#{window_index} #[fg=green]#(echo "#{pane_current_path}" | rev | cut -d'/' -f-1 | rev) #[fg=yellow,bold]|'
   export VIM_MODE
 }
+setdarkmode() {
+  VIM_MODE="DARK"
+  TMUX_MODE="DARK"
+  tmux set -g status-left '#[fg=#ffffff,bg=#005f87] %H:%M:%S  Date: #[fg=#ffe500]%d-%m-%Y  '
+  tmux set-option -g status-bg "#005f87" #base02
+  tmux set-option -g status-fg "#ffffff" #yellow
+  tmux set -g status-right '#[fg=#ffffff,bg=#005f87] Battery: #{battery_percentage} #[fg=#ffe500,bright] MEM/CPU: #(tmux-mem-cpu-load --averages-count 0)'
+
+  tmux set-window-option -g window-status-current-format '#[fg=#ffe500,bold]|> #[fg=blue,bold]#{window_index} #[fg=#00d700]#(echo "#{pane_current_path}" | rev | cut -d'/' -f-1 | rev) #[fg=#ffe500]<|'
+  tmux set-window-option -g window-status-format '#[fg=blue,bold]#{window_index} #[fg=green]#(echo "#{pane_current_path}" | rev | cut -d'/' -f-1 | rev) #[fg=yellow,bold]|'
+  export VIM_MODE
+}
 # source <(antibody init)
 
 # gpr() {

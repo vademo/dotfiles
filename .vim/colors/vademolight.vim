@@ -226,7 +226,7 @@ if &t_Co > 255
    hi ColorColumn                 ctermbg=250
    hi LineNr          ctermfg=236 ctermbg=255
    hi NonText         ctermfg=59
-
+   hi ALEError        ctermbg=172
    " hi SpecialKey      ctermfg=59
 
 end
