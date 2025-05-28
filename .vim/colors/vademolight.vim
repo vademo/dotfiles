@@ -228,7 +228,7 @@ if &t_Co > 255
    hi NonText         ctermfg=59
    hi ALEError        ctermbg=172
    " hi SpecialKey      ctermfg=59
-
+   hi SpellBad ctermbg=124
 end
 
 " Must be at the end, because of ctermbg=234 bug.

@@ -102,6 +102,11 @@ py() { python3 $1 }
 
 todo() { tb }
 todod() { tb -l digipolis }
+# Alias for opening windows explorer
+explorer() {
+  echo "open explorer $PWD";
+  explorer.exe `wslpath -w "$PWD"`;
+}
 # Alias for killing background processes by id
 KillLocalProcessByPort() { kill -9 $(lsof -t -i:"$1"); }
 # Alias staring docker of project
