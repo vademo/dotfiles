@@ -1,4 +1,6 @@
 # README
+## New Mac
+ install Homebrew https://brew.sh/
 
 ## Getting started
 
